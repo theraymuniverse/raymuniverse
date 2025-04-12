@@ -24,9 +24,9 @@ export default function Hero() {
     <section className="relative text-center pt-16 md:pt-28 lg:pt-32 pb-8 md:pb-10 lg:pb-20 bg-black" id='hero'>
       <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
         
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bricolage font-black mb-4 md:mb-6 pt-16 md:pt-28 leading-tight text-white">
+        <h1 className="text-5xl md:text-6xl lg:text-7xl font-bricolage font-black mb-6 md:mb-6 pt-16 md:pt-28 leading-[1.2] md:leading-tight text-white">
           <span 
-            className="inline-flex items-center justify-center bg-amber-500 rounded-lg transform -rotate-3 p-1.5 md:p-2 mr-1 md:mr-2 transition-all duration-300"
+            className="inline-flex items-center justify-center bg-amber-500 rounded-lg transform -rotate-3 p-2 md:p-2 mr-2 md:mr-2 transition-all duration-300"
             onMouseEnter={() => handleIconHover('code', 'left')}
             onMouseLeave={() => setHoveredIcon(null)}
           >
@@ -34,7 +34,7 @@ export default function Hero() {
           </span>
           Your Favourite Product 
           <span 
-            className="inline-flex items-center justify-center bg-blue-600 rounded-lg transform rotate-3 p-1.5 md:p-2 mx-1 md:mx-2 transition-all duration-300"
+            className="inline-flex items-center justify-center bg-blue-600 rounded-lg transform rotate-3 p-2 md:p-2 mx-2 md:mx-2 transition-all duration-300"
             onMouseEnter={() => handleIconHover('laptop', 'right')}
             onMouseLeave={() => setHoveredIcon(null)}
           >
@@ -43,7 +43,7 @@ export default function Hero() {
           Development Partner 
         </h1>
         
-        <p className="text-sm md:text-base font-normal md:font-medium mb-6 md:mb-8 lg:mb-12 mx-auto max-w-[90%] md:max-w-2xl text-gray-300">
+        <p className="text-base md:text-base font-normal md:font-medium mb-8 md:mb-8 lg:mb-12 mx-auto max-w-[90%] md:max-w-2xl text-gray-300">
           We're a product development partner that specializes in building web and mobile apps, software, and branding for startups and individuals, we're not just involved to build but also in your business goals.
         </p>
         
