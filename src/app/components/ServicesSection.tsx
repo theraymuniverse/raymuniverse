@@ -3,7 +3,17 @@ import { FaCode, FaRocket, FaMobile, FaCloud, FaChartLine } from 'react-icons/fa
 import { FiArrowRight } from 'react-icons/fi'
 import { useRef } from 'react'
 
-const services = [
+type AccentColor = 'blue' | 'purple' | 'green' | 'orange' | 'pink'
+
+interface Service {
+  icon: React.ElementType;
+  title: string;
+  description: string;
+  tags: string[];
+  accent: AccentColor;
+}
+
+const services: Service[] = [
   { 
     icon: FaRocket, 
     title: 'MVP Development', 
@@ -48,7 +58,7 @@ export default function ServicesSection() {
     scrollContainerRef.current?.scrollBy({ left: px, behavior: 'smooth' })
   }
 
-  const accentColors = {
+  const accentColors: Record<AccentColor, string> = {
     blue: 'border-blue-400 hover:border-blue-300',
     purple: 'border-purple-400 hover:border-purple-300',
     green: 'border-emerald-400 hover:border-emerald-300',
