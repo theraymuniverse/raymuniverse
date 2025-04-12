@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-bricolage), sans-serif; /* Use the Bricolage font */
+}
+
+p {
+  font-family: var(--font-urbanist), sans-serif; /* Use Urbanist for paragraphs */
+}
