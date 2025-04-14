@@ -33,14 +33,14 @@ export default function Hero() {
             <FaCode className={`text-white text-[0.68em] transition-all duration-300 ${iconAnimation('code')}`} />
           </span>
           Your Favourite Product 
-          <span 
+ 
+          Development Partner          <span 
             className="inline-flex items-center justify-center bg-blue-600 rounded-lg transform rotate-3 p-2 md:p-2 mx-2 md:mx-2 transition-all duration-300"
             onMouseEnter={() => handleIconHover('laptop', 'right')}
             onMouseLeave={() => setHoveredIcon(null)}
           >
+            <FaLaptopCode className={`text-white text-[0.68em] transition-all duration-300 ${iconAnimation('laptop')}`} />
           </span> 
-          Development Partner    <FaLaptopCode className={`text-white text-[0.68em] transition-all duration-300 ${iconAnimation('laptop')}`} />
-
         </h1>
         
         <p className="text-base md:text-base font-normal md:font-medium mb-8 md:mb-8 lg:mb-12 mx-auto max-w-[90%] md:max-w-2xl text-gray-300">
