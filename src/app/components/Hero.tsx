@@ -38,9 +38,9 @@ export default function Hero() {
             onMouseEnter={() => handleIconHover('laptop', 'right')}
             onMouseLeave={() => setHoveredIcon(null)}
           >
-            <FaLaptopCode className={`text-white text-[0.68em] transition-all duration-300 ${iconAnimation('laptop')}`} />
           </span> 
-          Development Partner 
+          Development Partner    <FaLaptopCode className={`text-white text-[0.68em] transition-all duration-300 ${iconAnimation('laptop')}`} />
+
         </h1>
         
         <p className="text-base md:text-base font-normal md:font-medium mb-8 md:mb-8 lg:mb-12 mx-auto max-w-[90%] md:max-w-2xl text-gray-300">
