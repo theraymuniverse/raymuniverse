@@ -11,7 +11,7 @@ export default function Footer() {
   const [copied, setCopied] = useState(false)
 
   const copyEmail = () => {
-    navigator.clipboard.writeText('info@allbrandi.ng')
+    navigator.clipboard.writeText('contact@theraymuniverse.com')
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
   }
@@ -55,7 +55,7 @@ export default function Footer() {
                 >
                   {copied ? <MdCheck size={15} /> : <MdContentCopy size={15} />}
                 </button>
-                <p className="text-base text-neutral-400">info@raymuniverse.com</p>
+                <p className="text-base text-neutral-400">contact@theraymuniverse.com</p>
               </div>
               <p className="text-sm mt-4 text-neutral-400">&copy; {new Date().getFullYear()} All rights reserved.</p>
             </div>
