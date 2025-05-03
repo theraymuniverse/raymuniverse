@@ -5,6 +5,7 @@ import ServicesSection from './components/ServicesSection'
 import Footer from './components/Footer'
 import FAQ from './components/FAQ'
 import Pricing from './components/Pricing'
+import Portfolio from './components/Portfolio'
 
 
 export default function Home() {
@@ -13,6 +14,7 @@ export default function Home() {
       <Hero />
       <ServicesSection />
       <ProcessSection />
+      <Portfolio />
       <ContactSection />
       {/* <Pricing /> */}
       <FAQ/>
