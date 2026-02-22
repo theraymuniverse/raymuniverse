@@ -57,7 +57,7 @@ export default function AboutSection() {
     <section id="about" className="about-section">
       <style>{`
         .about-section {
-          background: #080808;
+          background: #000;
           padding: 120px 0 140px;
         }
         .about-inner {
@@ -107,7 +107,6 @@ export default function AboutSection() {
 
       <div className="about-inner" ref={containerRef}>
         <div className="about-eyebrow">
-          <span className="about-eyebrow-line" />
           <span className="about-eyebrow-text">About us</span>
         </div>
 
