@@ -1,173 +1,520 @@
 "use client"
-import { useState } from 'react';
-import { FiSend, FiCheck, FiAlertTriangle, FiArrowRight } from 'react-icons/fi';
+import { useState } from 'react'
 
 export default function ContactSection() {
-  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
+  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
+  const [focused, setFocused] = useState<string | null>(null)
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setStatus('sending');
-
-    const form = e.currentTarget;
-    const formData = new FormData(form);
-    const data = Object.fromEntries(formData.entries());
-
+    e.preventDefault()
+    setStatus('sending')
+    const form = e.currentTarget
+    const data = Object.fromEntries(new FormData(form).entries())
     try {
-      const response = await fetch('/api/contact', {
+      const res = await fetch('/api/contact', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
-      });
-
-      if (response.ok) {
-        setStatus('sent');
-        form.reset();
-        setTimeout(() => setStatus('idle'), 3000);
+      })
+      if (res.ok) {
+        setStatus('sent')
+        form.reset()
+        setTimeout(() => setStatus('idle'), 4000)
       } else {
-        setStatus('error');
+        setStatus('error')
       }
-    } catch (error) {
-      console.error('Error:', error);
-      setStatus('error');
+    } catch {
+      setStatus('error')
     }
-  };
+  }
+
+  const fieldClass = (name: string) =>
+    `contact-field ${focused === name ? 'is-focused' : ''}`
 
   return (
-    <section className="relative py-28 bg-black text-white" id="contact">
-      {/* Full-width CONTACT header with perfect spacing */}
-      <div className="w-full border-t border-b border-gray-800 py-20 mb-16">
-        <div className="container mx-auto px-4">
-          <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-center uppercase">
-            CONTACT
-          </h2>
-          <p className="text-lg md:text-xl text-gray-400 text-center mt-6 max-w-xl mx-auto leading-relaxed">
-            Get in touch to discuss your project requirements and how we can collaborate.
-          </p>
-        </div>
-      </div>
+    <section id="contact" className="contact-section">
+      <style>{`
+        .contact-section {
+          background: #000000;
+          padding: 100px 0 0;
+          position: relative;
+          overflow: hidden;
+        }
 
-      {/* Form container with optimized spacing */}
-      <div className="container mx-auto px-4">
-        <div className="max-w-2xl mx-auto">
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        /* ── Layout ── */
+        .contact-inner {
+          max-width: 1140px;
+          margin: 0 auto;
+          padding: 0 28px;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 80px;
+          align-items: start;
+        }
+
+        /* ── Left panel ── */
+        .contact-left {
+          padding-bottom: 100px;
+          position: sticky;
+          top: 80px;
+        }
+        .contact-eyebrow {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          margin-bottom: 28px;
+        }
+        .contact-eyebrow-line {
+          width: 28px;
+          height: 1px;
+          background: var(--primary);
+          opacity: 0.7;
+        }
+        .contact-eyebrow-text {
+          font-size: 11px;
+          font-weight: 500;
+          letter-spacing: 0.16em;
+          text-transform: uppercase;
+          color: var(--primary);
+          opacity: 0.8;
+        }
+        .contact-headline {
+          font-size: clamp(28px, 3.8vw, 46px);
+          font-weight: 700;
+          color: #fff;
+          letter-spacing: -0.03em;
+          line-height: 1.08;
+          margin: 0 0 20px;
+        }
+        .contact-headline .text-primary { color: var(--primary); }
+        .contact-sub {
+          font-size: 14px;
+          color: rgba(255,255,255,0.38);
+          line-height: 1.75;
+          margin: 0 0 48px;
+          max-width: 340px;
+        }
+
+        /* Info rows */
+        .contact-info {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+          margin-bottom: 48px;
+        }
+        .contact-info-row {
+          display: flex;
+          align-items: flex-start;
+          gap: 14px;
+        }
+        .contact-info-icon {
+          width: 36px;
+          height: 36px;
+          border-radius: 8px;
+          border: 1px solid rgba(154,92,250,0.2);
+          background: rgba(154,92,250,0.06);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+          margin-top: 1px;
+        }
+        .contact-info-icon svg { color: var(--primary); }
+        .contact-info-label {
+          font-size: 11px;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          color: rgba(255,255,255,0.25);
+          margin: 0 0 2px;
+        }
+        .contact-info-value {
+          font-size: 14px;
+          color: rgba(255,255,255,0.7);
+          margin: 0;
+        }
+
+        /* Divider */
+        .contact-divider {
+          height: 1px;
+          background: rgba(255,255,255,0.06);
+          margin-bottom: 32px;
+        }
+
+        /* Availability badge */
+        .contact-availability {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          padding: 8px 16px;
+          border-radius: 100px;
+          border: 1px solid rgba(52,211,153,0.2);
+          background: rgba(52,211,153,0.05);
+        }
+        .avail-dot {
+          width: 7px;
+          height: 7px;
+          border-radius: 50%;
+          background: #34d399;
+          box-shadow: 0 0 8px rgba(52,211,153,0.7);
+          animation: avail-pulse 2.5s ease-in-out infinite;
+        }
+        .avail-text {
+          font-size: 12px;
+          color: rgba(52,211,153,0.85);
+          letter-spacing: 0.02em;
+        }
+        @keyframes avail-pulse {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.4; }
+        }
+
+        /* ── Right panel / Form ── */
+        .contact-right {
+          padding-bottom: 100px;
+        }
+        .contact-form {
+          display: flex;
+          flex-direction: column;
+          gap: 14px;
+        }
+
+        /* Field wrapper */
+        .contact-field {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          gap: 0;
+        }
+        .contact-field label {
+          font-size: 11px;
+          font-weight: 500;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          color: rgba(255,255,255,0.3);
+          margin-bottom: 6px;
+          transition: color 0.2s;
+        }
+        .contact-field.is-focused label {
+          color: var(--primary);
+          opacity: 0.8;
+        }
+
+        /* Input / Textarea / Select */
+        .contact-input {
+          width: 100%;
+          padding: 14px 18px;
+          border-radius: 10px;
+          border: 1px solid rgba(255,255,255,0.07);
+          background: #0f0f0f;
+          color: #fff;
+          font-size: 14px;
+          outline: none;
+          transition: border-color 0.2s ease, background 0.2s ease;
+          box-sizing: border-box;
+          appearance: none;
+          -webkit-appearance: none;
+          font-family: inherit;
+          resize: none;
+        }
+        .contact-input::placeholder { color: rgba(255,255,255,0.2); }
+        .contact-input:focus {
+          border-color: rgba(154,92,250,0.45);
+          background: rgba(154,92,250,0.04);
+        }
+        select.contact-input {
+          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='rgba(154,92,250,0.6)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+          background-repeat: no-repeat;
+          background-position: right 16px center;
+          padding-right: 42px;
+          color: rgba(255,255,255,0.6);
+        }
+        select.contact-input option {
+          background: #111;
+          color: #fff;
+        }
+
+        /* Two-col grid */
+        .contact-row {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 14px;
+        }
+
+        /* Submit */
+        .contact-submit {
+          margin-top: 6px;
+          width: 100%;
+          padding: 16px 24px;
+          border-radius: 10px;
+          border: none;
+          font-size: 14px;
+          font-weight: 600;
+          font-family: inherit;
+          letter-spacing: 0.02em;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+        .contact-submit:not(:disabled):hover {
+          opacity: 0.9;
+          transform: translateY(-1px);
+        }
+        .contact-submit:disabled { cursor: not-allowed; opacity: 0.7; }
+
+        .submit-idle { background: var(--primary); color: #fff; }
+        .submit-sending { background: var(--primary); color: #fff; }
+        .submit-sent { background: #34d399; color: #022c22; }
+        .submit-error { background: #f87171; color: #450a0a; }
+
+        /* Spinner */
+        .spin { animation: spin 0.8s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* ── Bottom border bar ── */
+        .contact-bottom-bar {
+          border-top: 1px solid rgba(255,255,255,0.05);
+          padding: 28px 0;
+          margin-top: 0;
+        }
+        .contact-bottom-inner {
+          max-width: 1140px;
+          margin: 0 auto;
+          padding: 0 28px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 20px;
+          flex-wrap: wrap;
+        }
+        .contact-footer-text {
+          font-size: 13px;
+          color: rgba(255,255,255,0.22);
+        }
+        .contact-footer-links {
+          display: flex;
+          gap: 24px;
+        }
+        .contact-footer-links a {
+          font-size: 13px;
+          color: rgba(255,255,255,0.3);
+          text-decoration: none;
+          transition: color 0.2s;
+        }
+        .contact-footer-links a:hover { color: var(--primary); }
+
+        /* ── Responsive ── */
+        @media (max-width: 860px) {
+          .contact-inner {
+            grid-template-columns: 1fr;
+            gap: 48px;
+          }
+          .contact-left { position: static; padding-bottom: 0; }
+          .contact-sub { max-width: 100%; }
+        }
+        @media (max-width: 560px) {
+          .contact-section { padding-top: 72px; }
+          .contact-row { grid-template-columns: 1fr; }
+        }
+      `}</style>
+
+      <div className="contact-inner">
+
+        {/* ── Left ── */}
+        <div className="contact-left">
+          <div className="contact-eyebrow">
+            <span className="contact-eyebrow-text">Get in touch</span>
+          </div>
+
+          <h3 className="contact-headline">
+            CONTACT US
+          </h3>
+
+          <p className="contact-sub">
+            Tell us about your project. We'll come back within 24 hours.
+          </p>
+
+          <div className="contact-info">
+            <div className="contact-info-row">
+              <div className="contact-info-icon">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2" y="4" width="20" height="16" rx="2"/>
+                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                </svg>
+              </div>
               <div>
+                <p className="contact-info-label">Email</p>
+                <p className="contact-info-value">info@raymuniverse.com</p>
+              </div>
+            </div>
+
+            <div className="contact-info-row">
+              <div className="contact-info-icon">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+              </div>
+              <div>
+                <p className="contact-info-label">Response time</p>
+                <p className="contact-info-value">Within 24 hours</p>
+              </div>
+            </div>
+
+            <div className="contact-info-row">
+              <div className="contact-info-icon">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                  <circle cx="12" cy="10" r="3"/>
+                </svg>
+              </div>
+              <div>
+                <p className="contact-info-label">Timezone</p>
+                <p className="contact-info-value">US hours covered (EST / PST)</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="contact-divider" />
+
+        </div>
+
+        {/* ── Right / Form ── */}
+        <div className="contact-right">
+          <form onSubmit={handleSubmit} className="contact-form">
+
+            <div className="contact-row">
+              <div className={fieldClass('name')}>
+                <label htmlFor="name">Your name</label>
                 <input
+                  id="name"
                   type="text"
                   name="name"
-                  placeholder="Your Name"
-                  className="w-full px-5 py-3.5 bg-gray-900 rounded-lg border border-gray-800 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/30 transition-all placeholder-gray-500"
+                  placeholder="John Smith"
+                  className="contact-input"
                   required
+                  onFocus={() => setFocused('name')}
+                  onBlur={() => setFocused(null)}
                 />
               </div>
-              <div>
+              <div className={fieldClass('email')}>
+                <label htmlFor="email">Email address</label>
                 <input
+                  id="email"
                   type="email"
                   name="email"
-                  placeholder="Email Address"
-                  className="w-full px-5 py-3.5 bg-gray-900 rounded-lg border border-gray-800 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/30 transition-all placeholder-gray-500"
+                  placeholder="john@company.com"
+                  className="contact-input"
                   required
+                  onFocus={() => setFocused('email')}
+                  onBlur={() => setFocused(null)}
                 />
               </div>
             </div>
 
-            <div>
-              <textarea
-                name="message"
-                placeholder="Describe your project..."
-                rows={5}
-                className="w-full px-5 py-3.5 bg-gray-900 rounded-lg border border-gray-800 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/30 transition-all placeholder-gray-500"
-                required
-              ></textarea>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              <div>
+            <div className="contact-row">
+              <div className={fieldClass('service')}>
+                <label htmlFor="service">Service needed</label>
                 <select
-                  name="budget"
-                  className="w-full px-5 py-3.5 bg-gray-900 rounded-lg border border-gray-800 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/30 transition-all appearance-none bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiM5Y2E3ZmYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1jaGV2cm9uLWRvd24iPjxwYXRoIGQ9Im02IDkgNiA2IDYtNiIvPjwvc3ZnPg==')] bg-no-repeat bg-[center_right_1.25rem] text-gray-300"
-                  required
-                >
-                  <option value="" disabled selected className="text-gray-500">Project Budget</option>
-                  <option value="$1K-$5K">$1K - $5K</option>
-                  <option value="$5K-$10K">$5K - $10K</option>
-                  <option value="$10K+">$10K+</option>
-                </select>
-              </div>
-              <div>
-                <select
+                  id="service"
                   name="service"
-                  className="w-full px-5 py-3.5 bg-gray-900 rounded-lg border border-gray-800 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/30 transition-all appearance-none bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiM5Y2E3ZmYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1jaGV2cm9uLWRvd24iPjxwYXRoIGQ9Im02IDkgNiA2IDYtNiIvPjwvc3ZnPg==')] bg-no-repeat bg-[center_right_1.25rem] text-gray-300"
+                  className="contact-input"
                   required
+                  onFocus={() => setFocused('service')}
+                  onBlur={() => setFocused(null)}
                 >
-                  <option value="" disabled selected className="text-gray-500">Service Needed</option>
+                  <option value="" disabled>Select a service</option>
+                  <option value="Product Design & Branding">Product Design & Branding</option>
                   <option value="Web Development">Web Development</option>
                   <option value="Mobile App">Mobile App</option>
-                  <option value="UI/UX Design">UI/UX Design</option>
+                  <option value="Mobile App">Automation</option>
+                  <option value="Motion & Animation">Motion & Animation</option>
+                  <option value="MVP Build">MVP Build</option>
+                  <option value="Retainer">Ongoing Retainer</option>
                 </select>
               </div>
+              <div className={fieldClass('budget')}>
+                <label htmlFor="budget">Project budget</label>
+                <select
+                  id="budget"
+                  name="budget"
+                  className="contact-input"
+                  required
+                  onFocus={() => setFocused('budget')}
+                  onBlur={() => setFocused(null)}
+                >
+                  <option value="" disabled>Select a range</option>
+                  <option value="$5K–$10K">$5K – $10K</option>
+                  <option value="$10K–$25K">$10K – $25K</option>
+                  <option value="$25K–$50K">$25K – $50K</option>
+                  <option value="$50K+">$50K+</option>
+                </select>
+              </div>
+            </div>
+
+            <div className={fieldClass('message')}>
+              <label htmlFor="message">Tell us about your project</label>
+              <textarea
+                id="message"
+                name="message"
+                placeholder="What are you building? What's the deadline? What's gone wrong before?"
+                rows={5}
+                className="contact-input"
+                required
+                onFocus={() => setFocused('message')}
+                onBlur={() => setFocused(null)}
+              />
             </div>
 
             <button
               type="submit"
-              disabled={status === 'sending'}
-              className={`w-full flex items-center justify-center px-6 py-4 rounded-lg font-medium transition-all duration-300 group ${
-                status === 'sending'
-                  ? 'bg-blue-600/80 cursor-not-allowed'
-                  : status === 'sent'
-                  ? 'bg-green-600'
-                  : status === 'error'
-                  ? 'bg-red-600'
-                  : 'bg-blue-600 hover:bg-blue-700'
-              }`}
+              disabled={status === 'sending' || status === 'sent'}
+              className={`contact-submit submit-${status}`}
             >
-              {status === 'idle' ? (
+              {status === 'idle' && (
                 <>
-                  <span>Submit Inquiry</span>
-                  <FiArrowRight className="ml-2 transition-transform duration-300 group-hover:translate-x-1" />
-                </>
-              ) : status === 'sending' ? (
-                <>
-                  <svg
-                    className="animate-spin -ml-1 mr-2 h-5 w-5 text-white"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                  >
-                    <circle
-                      className="opacity-25"
-                      cx="12"
-                      cy="12"
-                      r="10"
-                      stroke="currentColor"
-                      strokeWidth="4"
-                    ></circle>
-                    <path
-                      className="opacity-75"
-                      fill="currentColor"
-                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                    ></path>
+                  Send Message
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
-                  Sending...
                 </>
-              ) : status === 'sent' ? (
+              )}
+              {status === 'sending' && (
                 <>
-                  <FiCheck className="mr-2" />
-                  Message Sent
+                  <svg className="spin" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" strokeOpacity="0.25"/>
+                    <path d="M12 2a10 10 0 0 1 10 10" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
+                  </svg>
+                  Sending…
                 </>
-              ) : (
+              )}
+              {status === 'sent' && (
                 <>
-                  <FiAlertTriangle className="mr-2" />
-                  Send Failed
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M3 8l4 4 6-7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                  Message sent — we'll reply soon
+                </>
+              )}
+              {status === 'error' && (
+                <>
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M8 5v4M8 11v1" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/>
+                    <path d="M1.5 13L8 2l6.5 11H1.5z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
+                  </svg>
+                  Failed — try emailing us directly
                 </>
               )}
             </button>
+
           </form>
         </div>
       </div>
+
+
+
     </section>
-  );
+  )
 }

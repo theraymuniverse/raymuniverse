@@ -1,44 +1,51 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, Urbanist } from "next/font/google"; // Import both fonts
+import { Urbanist, Inter } from "next/font/google"; // Updated premium fonts
 import "./globals.css";
 import Header from "./components/Header";
 import Script from "next/script";
 import Footer from "./components/Footer";
 
-const bricolage = Bricolage_Grotesque({
-  subsets: ['latin'],
-  variable: '--font-bricolage',
-  display: 'swap',
-  weight: ['400', '500', '600', '700', '800'] 
+// Headings font (premium, sans-serif)
+const urbanist = Urbanist({
+  subsets: ["latin"],
+  variable: "--font-urbanist",
+  display: "swap",
+  weight: ["400", "500", "600", "700", "800"]
 });
 
-const urbanist = Urbanist({
-  subsets: ['latin'],
-  variable: '--font-urbanist',
-  display: 'swap',
-  weight: ['400', '500', '600', '700'] 
+// Body font (modern, readable)
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+  weight: ["400", "500", "600", "700"]
 });
 
 export const metadata: Metadata = {
-  title: "Raym Universe - Your Favourite Software Partner",
-  description: "Web, Mpbile apps | Software and Branding Services",
+  title: "Raym Universe - Your Premium Software Partner",
+  description: "Web & Mobile Apps | Software and Branding Services",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${bricolage.variable} ${urbanist.variable}`}>
-      <body className="font-bricolage antialiased"> {/* Use Bricolage for headings */}
+    <html lang="en" className={`${urbanist.variable} ${inter.variable}`}>
+      <body className="antialiased bg-white text-gray-900">
+        {/* Header */}
         <Header />
-        <main className="font-urbanist">{children}</main> {/* Use Urbanist for paragraphs */}
+
+        {/* Main content */}
+        <main className="font-inter">{children}</main>
+
+        {/* Analytics */}
         <Script
           src="https://cloud.umami.is/script.js"
           data-website-id="8f2a7700-60d1-4997-a932-1ae0c732b1b3"
           strategy="afterInteractive"
         />
+
+        {/* Footer */}
         <Footer />
       </body>
     </html>

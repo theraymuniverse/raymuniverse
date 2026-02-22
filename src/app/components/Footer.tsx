@@ -18,17 +18,17 @@ export default function Footer() {
 
   return (
     <>
-      <section className="bg-black py-20 border-t border-gray-800">
+      <section className="bg-black py-20 border-t border-gray-900">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl font-bold text-white mb-6">Let's create something amazing together :)</h2>
-          <a href="https://calendly.com/theraymuniverse" className="inline-flex items-center bg-blue-500 text-white px-8 py-3 rounded-lg text-xl font-semibold hover:bg-blue-600 transition-colors duration-300 shadow-lg">
+          <a href="https://calendly.com/theraymuniverse" className="inline-flex items-center btn-primary px-8 py-3 rounded-lg text-xl font-semibold hover:bg-blue-600 transition-colors duration-300 shadow-lg">
             <FaHeadset className="mr-2" />
             Book a Call
           </a>
         </div>
       </section>
-      <footer className="bg-black text-white py-16 border-t border-gray-800">
-        <div className="container mx-auto px-4">
+      <footer className="bg-black  text-white py-16 border-t border-gray-900">
+        <div className="container mx-auto max-w-7xl  px-4">
           <div className="flex flex-col md:flex-row justify-between items-start">
             <div className="mb-8 md:mb-0">
               <div className="flex items-center mb-1">

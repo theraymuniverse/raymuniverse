@@ -1,15 +1,38 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-html {
-  scroll-behavior: smooth;
+/* Tailwind v4 theme variables */
+@theme {
+  --primary: #9A5CFA;
 }
 
-body {
-  font-family: var(--font-bricolage), sans-serif; /* Use the Bricolage font */
+/* Base styles */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Headings → Urbanist */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Urbanist', sans-serif;
+  }
+
+  /* Body text → Inter */
+  body, p, li, span, a {
+    font-family: 'Inter', sans-serif;
+  }
 }
 
-p {
-  font-family: var(--font-urbanist), sans-serif; /* Use Urbanist for paragraphs */
+/* Custom components */
+.btn-primary {
+  background-color: var(--primary);
+  color: white;
+  transition: background-color 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: color-mix(in oklab, var(--primary) 80%, black);
+}
+
+.text-primary {
+  color: var(--primary);
 }
