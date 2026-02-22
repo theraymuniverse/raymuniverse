@@ -44,7 +44,7 @@ export default function Hero() {
 
         {/* Subtitle */}
         <p className="mt-6 text-gray-400 max-w-2xl mx-auto text-base sm:text-lg md:text-xl leading-relaxed">
-          We build MVPs and digital products for early-stage startups — design, development, AI automation and motion, all under one roof.
+          We build MVPs and digital products for early-stage startups from design, development, AI automation and motion, all under one roof.
         </p>
 
         {/* CTAs */}
