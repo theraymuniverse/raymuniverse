@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react'
 const paragraphs = [
   {
     segments: [
-      { text: "Most agencies hand you a quote and disappear into a build. Raymuniverse works differently.", white: true },
+      { text: "Most agencies hand you a quote and disappear into a build. Raym Universe works differently.", white: true },
     ]
   },
   {
