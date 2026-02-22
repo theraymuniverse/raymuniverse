@@ -21,7 +21,7 @@ export default function Footer() {
       <section className="bg-black py-20 border-t border-gray-900">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl font-bold text-white mb-6">Let's create something amazing together :)</h2>
-          <a href="https://calendly.com/theraymuniverse" className="inline-flex items-center btn-primary px-8 py-3 rounded-lg text-xl font-semibold hover:bg-blue-600 transition-colors duration-300 shadow-lg">
+          <a href="https://calendly.com/theraymuniverse" className="inline-flex items-center btn-primary px-8 py-3 rounded-lg text-xl font-semibold  transition-colors duration-300 shadow-lg">
             <FaHeadset className="mr-2" />
             Book a Call
           </a>
