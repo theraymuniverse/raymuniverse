@@ -100,7 +100,7 @@
     react-merge-refs "2.1.1"
     thumbhash "0.1.1"
 
-"@splinetool/runtime@*":
+"@splinetool/runtime@*", "@splinetool/runtime@^1.12.53":
   version "1.12.58"
   resolved "https://registry.npmjs.org/@splinetool/runtime/-/runtime-1.12.58.tgz"
   integrity sha512-skwkUXFjYExH2kjnVK/1c4/g2FhcZdsrVdbocAth8lqCFk6PyhsO5g7aH4ejv0aag1YiGhESHSttyFbxnNt0YA==
