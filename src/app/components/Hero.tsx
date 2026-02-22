@@ -38,7 +38,7 @@ export default function Hero() {
           </span>
 
           <span className="block text-primary mt-3">
-            You Build The company.
+            You Build The Company.
           </span>
         </h1>
 
