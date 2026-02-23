@@ -346,7 +346,7 @@ export default function ContactSection() {
               </div>
               <div>
                 <p className="contact-info-label">Email</p>
-                <p className="contact-info-value">info@raymuniverse.com</p>
+                <p className="contact-info-value">contact@theraymuniverse.com</p>
               </div>
             </div>
 
