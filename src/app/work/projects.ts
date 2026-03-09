@@ -106,14 +106,14 @@ export const projects: Project[] = [
     title: 'Dappcast Mobile',
     badge: 'Watch‑to‑earn streaming',
     shortDescription:
-      'A streaming app that rewards users for watching content — earning DPST tokens through a built‑in mining and referral system.',
+      'A streaming app that rewards users for watching content, earning DPST tokens through a built‑in mining and referral system.',
     tags: ['Streaming', 'Mobile app'],
     image: '/dappcast/cover.png',
     headerImage: '/dappcast/header.png',
     imageAccent: 'rgba(192,132,252,0.18)',
     role: 'Product design, mobile UX, platform architecture',
     industry: 'Media & Entertainment',
-    timeframe: 'From MVP to production‑ready app',
+    timeframe: '2 months',
     overview:
       'Dappcast is a cross‑platform streaming application built with Flutter that combines a rich content library with a token reward system. Users earn DPST tokens simply by watching content, referring friends, and participating in team activities — creating a new kind of engagement loop that traditional streaming platforms cannot offer.',
     problem:
