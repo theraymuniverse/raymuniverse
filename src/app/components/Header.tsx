@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { FiMenu, FiX } from 'react-icons/fi'
 import Image from 'next/image'
-import logo from '@/public/logo.png'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -17,9 +16,9 @@ export default function Header() {
   }, [])
 
   const navLinks = [
+    { label: 'Our Work', href: '#portfolio' },
     { label: 'About', href: '#about' },
     { label: 'Services', href: '#services' },
-    { label: 'Portfolio', href: '#portfolio' },
     { label: 'Contact', href: '#contact' },
   ]
 
@@ -33,7 +32,7 @@ export default function Header() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
           <Image
-            src={logo}
+            src="/logo.png"
             alt="Logo"
             width={160}
             height={50}
@@ -95,7 +94,8 @@ export default function Header() {
             onClick={() => setIsMenuOpen(false)}
             className="mt-2 px-8 py-2.5 rounded-full btn-primary font-semibold transition"
           >
-Contact Us          </Link>
+            Contact Us
+          </Link>
         </div>
       )}
     </header>

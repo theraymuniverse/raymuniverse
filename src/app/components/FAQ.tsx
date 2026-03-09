@@ -32,191 +32,30 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   return (
-    <section id="faqs" className="faq-section">
-      <style>{`
-        .faq-section {
-          background: #000000;
-          padding: 100px 0 120px;
-        }
-        .faq-inner {
-          max-width: 1140px;
-          margin: 0 auto;
-          padding: 0 28px;
-          display: grid;
-          grid-template-columns: 1fr 1.6fr;
-          gap: 80px;
-          align-items: start;
-        }
+    <section id="faqs" className="bg-black py-24 lg:py-28 max-sm:py-20">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-7 lg:grid-cols-[1fr_1.6fr] lg:gap-20 lg:items-start">
 
-        /* ── Left ── */
-        .faq-left {
-          position: sticky;
-          top: 80px;
-        }
-        .faq-eyebrow {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          margin-bottom: 20px;
-        }
-        .faq-eyebrow-line {
-          width: 28px;
-          height: 1px;
-          background: var(--primary);
-          opacity: 0.7;
-        }
-        .faq-eyebrow-text {
-          font-size: 11px;
-          font-weight: 500;
-          letter-spacing: 0.16em;
-          text-transform: uppercase;
-          color: var(--primary);
-          opacity: 0.8;
-        }
-        .faq-headline {
-          font-size: clamp(28px, 3.5vw, 44px);
-          font-weight: 700;
-          color: #fff;
-          letter-spacing: -0.03em;
-          line-height: 1.1;
-          margin: 0 0 16px;
-        }
-        .faq-headline .text-primary { color: var(--primary); }
-        .faq-sub {
-          font-size: 14px;
-          color: rgba(255,255,255,0.36);
-          line-height: 1.75;
-          margin: 0 0 36px;
-          max-width: 300px;
-        }
-        .faq-cta-link {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          font-size: 13px;
-          font-weight: 600;
-          color: var(--primary);
-          text-decoration: none;
-          opacity: 0.8;
-          transition: opacity 0.2s, gap 0.2s;
-        }
-        .faq-cta-link:hover { opacity: 1; gap: 12px; }
-
-        /* ── Right / Accordion ── */
-        .faq-list {
-          display: flex;
-          flex-direction: column;
-          gap: 0;
-          border-top: 1px solid rgba(255,255,255,0.06);
-        }
-
-        .faq-item {
-          border-bottom: 1px solid rgba(255,255,255,0.06);
-        }
-
-        .faq-trigger {
-          width: 100%;
-          background: none;
-          border: none;
-          cursor: pointer;
-          padding: 24px 0;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 20px;
-          text-align: left;
-        }
-        .faq-question {
-          font-size: 15px;
-          font-weight: 600;
-          color: rgba(255,255,255,0.75);
-          line-height: 1.4;
-          letter-spacing: -0.01em;
-          transition: color 0.2s;
-        }
-        .faq-item.is-open .faq-question {
-          color: #fff;
-        }
-
-        .faq-icon {
-          flex-shrink: 0;
-          width: 28px;
-          height: 28px;
-          border-radius: 50%;
-          border: 1px solid rgba(255,255,255,0.1);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: rgba(255,255,255,0.3);
-          transition: all 0.25s ease;
-          position: relative;
-        }
-        .faq-item.is-open .faq-icon {
-          border-color: var(--primary);
-          background: rgba(154,92,250,0.1);
-          color: var(--primary);
-        }
-
-        /* Plus → minus via rotation */
-        .faq-icon-bar {
-          position: absolute;
-          width: 10px;
-          height: 1.5px;
-          background: currentColor;
-          border-radius: 2px;
-          transition: transform 0.25s ease, opacity 0.25s ease;
-        }
-        .faq-icon-bar.vertical {
-          transform: rotate(90deg);
-        }
-        .faq-item.is-open .faq-icon-bar.vertical {
-          transform: rotate(0deg);
-          opacity: 0;
-        }
-
-        .faq-answer-wrap {
-          overflow: hidden;
-          max-height: 0;
-          transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .faq-item.is-open .faq-answer-wrap {
-          max-height: 300px;
-        }
-        .faq-answer {
-          padding: 0 0 24px;
-          font-size: 14px;
-          color: rgba(255,255,255,0.45);
-          line-height: 1.8;
-        }
-
-        /* ── Responsive ── */
-        @media (max-width: 860px) {
-          .faq-inner {
-            grid-template-columns: 1fr;
-            gap: 48px;
-          }
-          .faq-left { position: static; }
-          .faq-sub { max-width: 100%; }
-        }
-        @media (max-width: 560px) {
-          .faq-section { padding: 72px 0 80px; }
-        }
-      `}</style>
-
-      <div className="faq-inner">
-
-        {/* Left */}
-        <div className="faq-left">
-          <div className="faq-eyebrow">
-            <span className="faq-eyebrow-text">FAQ</span>
+        {/* ── Left ── */}
+        <div className="lg:sticky lg:top-20">
+          <div className="mb-5 flex items-center gap-3">
+            <span className="h-px w-7 bg-[var(--primary)] opacity-70" />
+            <span className="text-xs font-medium uppercase tracking-widest text-[var(--primary)] opacity-80">
+              FAQ
+            </span>
           </div>
-          <h2 className="faq-headline">
-            Frequently Asked 
+
+          <h2 className="mb-4 text-4xl font-bold leading-tight tracking-tighter text-white lg:text-5xl">
+            Frequently Asked
           </h2>
-          <p className="faq-sub">
+
+          <p className="mb-9 max-w-xs text-sm leading-relaxed text-white/40 lg:max-w-xs max-lg:max-w-full">
             If you have a question that is not covered here, send us a message and we will respond within 24 hours.
           </p>
-          <a href="#contact" className="faq-cta-link">
+
+          <a
+            href="#contact"
+            className="group inline-flex items-center gap-2 text-sm font-semibold text-[var(--primary)] opacity-80 transition-[opacity,gap] duration-200 hover:gap-3 hover:opacity-100"
+          >
             Send us a message
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
               <path d="M2 7h10M8 4l4 3-4 3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
@@ -224,24 +63,37 @@ export default function FAQ() {
           </a>
         </div>
 
-        {/* Accordion */}
-        <div className="faq-list">
+        {/* ── Accordion ── */}
+        <div className="border-t border-white/10">
           {faqs.map((faq, i) => {
             const isOpen = openIndex === i
             return (
-              <div key={i} className={`faq-item ${isOpen ? 'is-open' : ''}`}>
+              <div key={i} className="border-b border-white/10">
                 <button
-                  className="faq-trigger"
+                  className="flex w-full cursor-pointer items-center justify-between gap-5 bg-transparent py-6 text-left"
                   onClick={() => setOpenIndex(isOpen ? null : i)}
                 >
-                  <span className="faq-question">{faq.question}</span>
-                  <span className="faq-icon">
-                    <span className="faq-icon-bar horizontal" />
-                    <span className="faq-icon-bar vertical" />
+                  <span className={`text-sm font-semibold leading-snug tracking-tight transition-colors duration-200 lg:text-base ${isOpen ? 'text-white' : 'text-white/75'}`}>
+                    {faq.question}
+                  </span>
+
+                  {/* Plus / minus icon */}
+                  <span className={`relative flex h-7 w-7 shrink-0 items-center justify-center rounded-full border transition-all duration-200 ${isOpen ? 'border-[var(--primary)] bg-purple-500/10 text-[var(--primary)]' : 'border-white/10 text-white/30'}`}>
+                    {/* Horizontal bar */}
+                    <span className="absolute h-px w-2.5 rounded-sm bg-current" />
+                    {/* Vertical bar — fades out when open */}
+                    <span className={`absolute h-px w-2.5 rounded-sm bg-current transition-[opacity,transform] duration-200 ${isOpen ? 'opacity-0 rotate-0' : 'rotate-90'}`} />
                   </span>
                 </button>
-                <div className="faq-answer-wrap">
-                  <p className="faq-answer">{faq.answer}</p>
+
+                {/* Answer — max-height transition via inline style */}
+                <div
+                  className="overflow-hidden transition-[max-height] duration-300 ease-in-out"
+                  style={{ maxHeight: isOpen ? '300px' : '0px' }}
+                >
+                  <p className="pb-6 text-sm leading-loose text-white/45">
+                    {faq.answer}
+                  </p>
                 </div>
               </div>
             )

@@ -2,7 +2,6 @@
 import { FaHeadset } from 'react-icons/fa'
 import { MdContentCopy, MdCheck } from 'react-icons/md'
 import { useState } from 'react'
-import logo from '@/public/logo.png'
 import Link from 'next/link'
 import Image from 'next/image'
 
@@ -18,16 +17,16 @@ export default function Footer() {
 
   return (
     <>
-      <section className="bg-black py-20 border-t border-gray-900">
+      <section className="bg-black py-20 border-t border-white/8">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl font-bold text-white mb-6">Let's create something amazing together :)</h2>
-          <a href="https://calendly.com/theraymuniverse" className="inline-flex items-center btn-primary px-8 py-3 rounded-lg text-xl font-semibold  transition-colors duration-300 shadow-lg">
+          <a href="https://calendly.com/theraymuniverse" className="inline-flex items-center btn-primary px-8 py-3 rounded-lg text-xl font-semibold  transition-colors duration-300 shadow-xs">
             <FaHeadset className="mr-2" />
             Book a Call
           </a>
         </div>
       </section>
-      <footer className="bg-black  text-white py-16 border-t border-gray-900">
+      <footer className="bg-black  text-white py-16 border-t border-white/8">
         <div className="container mx-auto max-w-7xl  px-4">
           <div className="flex flex-col md:flex-row justify-between items-start">
             <div className="mb-8 md:mb-0">
@@ -35,7 +34,7 @@ export default function Footer() {
                 <Link href="/" className="flex-shrink-0 flex items-center">
                   <div className="bg-black rounded-lg -ml-1 inline-flex items-center justify-center">
                     <Image 
-                      src={logo} 
+                      src="/logo.png" 
                       width={200} 
                       height={50} 
                       alt='Logo'
