@@ -129,8 +129,7 @@ export const projects: Project[] = [
       'CI/CD pipeline setup and code quality standards',
     ],
     metrics: [
-      { label: 'Reward model', value: 'DPST token earnings' },
-      { label: 'Engagement', value: 'Mining, referrals & AI Finder' },
+      { label: 'Platforms', value: 'iOS & Android' },
     ],
     gallerySections: [
       {
