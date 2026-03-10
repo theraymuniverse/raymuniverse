@@ -26,7 +26,7 @@ export default function Hero() {
         {/* Hero Heading */}
         <h1
           className="
-            text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.5rem]
+            text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.5rem]
             font-semibold text-white
             tracking-tight
             leading-[1.05]
