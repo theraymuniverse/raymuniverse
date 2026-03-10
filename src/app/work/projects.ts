@@ -47,7 +47,7 @@ export const projects: Project[] = [
     title: 'Ahiaoma Marketplace',
     badge: 'Mobile commerce app',
     shortDescription:
-      'A mobile marketplace connecting buyers and sellers of fresh farm produce — from browsing and negotiation to payment and doorstep delivery.',
+      'A mobile marketplace connecting buyers and sellers of fresh farm produce from browsing and negotiation to payment and doorstep delivery.',
     tags: ['Marketplace', 'Mobile app'],
     image: '/ahiaoma/cover.png',
     headerImage: '/ahiaoma/header.png',
@@ -56,9 +56,9 @@ export const projects: Project[] = [
     industry: 'Agriculture, E‑commerce',
     timeframe: 'Ongoing product partnership',
     overview:
-      'Ahiaoma is a cross‑platform mobile marketplace built with Flutter that connects buyers and sellers of fresh farm produce. It covers the full commerce journey — from product discovery and in‑app negotiation to secure checkout and real‑time delivery tracking — in a clean, mobile‑first experience designed for everyday use.',
+      'Ahiaoma is a cross‑platform mobile marketplace built with Flutter that connects buyers and sellers of fresh farm produce. It covers the full commerce journey from product discovery and in‑app negotiation to secure checkout and real‑time delivery tracking in a clean, mobile‑first experience designed for everyday use.',
     problem:
-      'Farm produce trading in the region was fragmented and largely informal. Buyers had no reliable way to find verified sellers, prices were opaque, and there was no structured process for payments or delivery — making the experience frustrating for both sides.',
+      'Farm produce trading in the region was fragmented and largely informal. Buyers had no reliable way to find verified sellers, prices were opaque, and there was no structured process for payments or delivery, making the experience frustrating for both sides.',
     solution:
       'We designed and built a two‑sided marketplace that gives buyers a smooth shopping experience and sellers the tools to run their business entirely from their phones. The platform handles onboarding, product discovery, in‑app negotiation, secure payments via Paystack, and dynamic delivery routing based on the buyer\'s location.',
     impact:
@@ -109,9 +109,9 @@ export const projects: Project[] = [
     problem:
       'Streaming platforms compete heavily on content alone, with little reason for users to stay active beyond the shows they watch. There is no reward for loyalty, no incentive for referrals, and nothing that makes one platform feel meaningfully different from another in terms of user value.',
     solution:
-      'We designed a watch‑to‑earn model where user activity directly translates into token earnings. The platform features live token mining, a referral system with team‑based boosts, and an AI‑assisted content finder — all wrapped in a familiar, approachable streaming interface with category browsing, cast details, and ratings.',
+      'We designed a watch‑to‑earn model where user activity directly translates into token earnings. The platform features live token mining, a referral system with team‑based boosts, and an AI‑assisted content finder all wrapped in a familiar, approachable streaming interface with category browsing, cast details, and ratings.',
     impact:
-      'Dappcast gives the platform a tangible edge in user acquisition and retention. Users are incentivised to watch more, refer others, and stay active — while the mainstream UX ensures the product feels accessible to audiences who are new to token‑based rewards.',
+      'Dappcast gives the platform a tangible edge in user acquisition and retention. Users are incentivised to watch more, refer others, and stay active while the mainstream UX ensures the product feels accessible to audiences who are new to token‑based rewards.',
     services: [
       'Product strategy and UX design for watch‑to‑earn mechanics',
       'Flutter architecture using BLoC, Provider, and GoRouter',
