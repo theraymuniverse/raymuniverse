@@ -89,16 +89,6 @@ export const projects: Project[] = [
           { id: 'ahiaoma-8', label: 'Screen 8', image: '/ahiaoma/screen8.png' },
         ],
       },
-      {
-        id: 'ahiaoma-admin',
-        layout: 'two',
-        aspectRatio: 'landscape',
-        caption: 'Admin & analytics',
-        items: [
-          { id: 'ahiaoma-9',  label: 'Dashboard',    image: '/ahiaoma/screen-dashboard.png' },
-          { id: 'ahiaoma-10', label: 'Delivery map', image: '/ahiaoma/screen-delivery.png' },
-        ],
-      },
     ],
   },
   {
@@ -115,7 +105,7 @@ export const projects: Project[] = [
     industry: 'Media & Entertainment',
     timeframe: '2 months',
     overview:
-      'Dappcast is a cross‑platform streaming application built with Flutter that combines a rich content library with a token reward system. Users earn DPST tokens simply by watching content, referring friends, and participating in team activities — creating a new kind of engagement loop that traditional streaming platforms cannot offer.',
+      'Dappcast is a cross‑platform streaming application built with Flutter that combines a rich content library with a token reward system. Users earn DPST tokens simply by watching content, referring friends, and participating in team activities creating a new kind of engagement loop that traditional streaming platforms cannot offer.',
     problem:
       'Streaming platforms compete heavily on content alone, with little reason for users to stay active beyond the shows they watch. There is no reward for loyalty, no incentive for referrals, and nothing that makes one platform feel meaningfully different from another in terms of user value.',
     solution:
