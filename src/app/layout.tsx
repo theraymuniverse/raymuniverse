@@ -31,7 +31,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${urbanist.variable} ${inter.variable}`}>
-      <body className="antialiased  text-gray-900">
+      <body className="antialiased bg-black text-gray-900">
         {/* Header */}
         <Header />
 
