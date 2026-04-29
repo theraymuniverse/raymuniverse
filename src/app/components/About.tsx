@@ -28,9 +28,15 @@ const paragraphs = [
 export default function AboutSection() {
   const containerRef = useRef<HTMLDivElement>(null)
   const wordRefs = useRef<(HTMLSpanElement | null)[]>([])
+  const rafRef = useRef<number | null>(null)
+  const lastScrollRef = useRef<number>(0)
 
   useEffect(() => {
-    const handleScroll = () => {
+    let mounted = true
+
+    const updateScrollEffect = () => {
+      if (!mounted) return
+      
       const viewH = window.innerHeight
 
       wordRefs.current.forEach((el) => {
@@ -44,11 +50,30 @@ export default function AboutSection() {
         const val = Math.round(gray + (white - gray) * progress)
         el.style.color = `rgb(${val},${val},${val})`
       })
+      
+      rafRef.current = null
+    }
+
+    const handleScroll = () => {
+      // Throttle: only recalculate every ~16ms (60fps) with requestAnimationFrame
+      if (rafRef.current !== null) {
+        cancelAnimationFrame(rafRef.current)
+      }
+      
+      rafRef.current = requestAnimationFrame(updateScrollEffect)
+      lastScrollRef.current = window.scrollY
     }
 
     window.addEventListener('scroll', handleScroll, { passive: true })
-    handleScroll()
-    return () => window.removeEventListener('scroll', handleScroll)
+    updateScrollEffect() // Initial call
+    
+    return () => {
+      mounted = false
+      if (rafRef.current !== null) {
+        cancelAnimationFrame(rafRef.current)
+      }
+      window.removeEventListener('scroll', handleScroll)
+    }
   }, [])
 
   let wordIndex = 0
