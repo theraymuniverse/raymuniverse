@@ -38,10 +38,67 @@ export type Project = {
   impact: string
   services: string[]
   metrics?: { label: string; value: string }[]
+  externalUrl?: string
   gallerySections?: ProjectGallerySection[]
 }
 
 export const projects: Project[] = [
+  {
+    slug: 'acabeta',
+    title: 'Acabeta',
+    badge: 'EdTech platform',
+    shortDescription:
+      'A modern AI-powered education platform for learners, tutors, and employers with clear course discovery and career growth flows.',
+    tags: ['EdTech', 'Web App'],
+    image: '/acabeta-project.png',
+    headerImage: '/acabeta-project.png',
+    imageAccent: 'rgba(60,130,252,0.16)',
+    role: 'UI/UX design, branding, and landing page development',
+    industry: 'Education Technology',
+    timeframe: 'Designed and launched in 4 weeks',
+    overview:
+      'Acabeta is a career-focused learning platform built to connect learners with career-ready courses, mentors, and employers through intelligent discovery and polished UX.',
+    problem:
+      'Learners and tutors often struggle to find a single platform that combines both skills development and real job-ready outcomes in a seamless experience.',
+    solution:
+      'We built a clean, accessible education experience with strong onboarding, course discovery, and a trusted marketplace for tutors and learners.',
+    impact:
+      'The platform gives learners faster access to relevant training while enabling educators to showcase their skills and connect with students more effectively.',
+    services: [
+      'Brand identity and visual direction',
+      'Landing page and product design',
+      'Responsive web experience with strong conversion flows',
+    ],
+    externalUrl: 'https://acabeta.vercel.app',
+  },
+  {
+    slug: 'afrostitches',
+    title: 'Afrostitches',
+    badge: 'E-commerce brand',
+    shortDescription:
+      'A premium African fashion marketplace that showcases designer products with elegant visual storytelling and simple shopping interactions.',
+    tags: ['E-commerce', 'Fashion'],
+    image: '/afrostitches-project.png',
+    headerImage: '/afrostitches-project.png',
+    imageAccent: 'rgba(16,185,129,0.12)',
+    role: 'Branding, e-commerce design, storefront experience',
+    industry: 'Retail & E-commerce',
+    timeframe: 'Identity and storefront launch',
+    overview:
+      'Afrostitches is a curated fashion destination for African designers, created to help shoppers discover fresh styles and purchase with confidence.',
+    problem:
+      'Many local fashion brands lack a polished online presence that makes browsing and buying feel premium and trustworthy.',
+    solution:
+      'We designed a modern marketplace experience with clear product showcases, simplified navigation, and an elevated brand tone.',
+    impact:
+      'The design helps Afrostitches present its products as premium, increasing trust and driving more shopper engagement.',
+    services: [
+      'E-commerce visual design and brand positioning',
+      'Landing page and featured product layouts',
+      'Customer journey mapping and UX refinement',
+    ],
+    externalUrl: 'https://afrostitches.com',
+  },
   {
     slug: 'ahiaoma-marketplace',
     title: 'Ahiaoma Marketplace',
